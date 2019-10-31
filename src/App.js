@@ -1,5 +1,12 @@
 import React from "react";
+import Intro from "./Sections/intro";
+import About from "./Sections/about";
 
 export function App(props) {
-  return <h1 style={{textAlign: 'center'}}>Hello World!</h1>;
+  return (
+    <div>
+      <Intro />
+      <About />
+    </div>
+  );
 }
