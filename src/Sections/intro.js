@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Blob from "../Assets/Blob.png";
 import Blocks from "../Assets/Blocks.png";
 import Frame from "../Assets/frame.png";
 export default function Intro() {
+  const [size, setSize] = useState("reg");
+
+  const styles = {
+    reg: {
+      titleSize: 72,
+      bodySize: 32
+    },
+    mobile: {
+      titleSize: 58,
+      bodySize: 24
+    }
+  };
+
+  const updateSize = x => {
+    if (window.innerWidth < 420) {
+      setSize("mobile");
+    } else {
+      setSize("reg");
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateSize);
+
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   return (
     <div
       style={{
@@ -27,7 +53,7 @@ export default function Intro() {
         }}
         src={Blob}
       />
-      <img
+      {/* <img
         alt={"Blob"}
         style={{
           zIndex: 20,
@@ -37,7 +63,7 @@ export default function Intro() {
           right: 0
         }}
         src={Blocks}
-      />
+      /> */}
       <div
         style={{
           width: "100%",
@@ -48,12 +74,18 @@ export default function Intro() {
           paddingBottom: 200
         }}
       >
-        <div style={{ fontSize: 72, color: "#2980b9", fontFamily: "Pacifico" }}>
+        <div
+          style={{
+            fontSize: styles[size].titleSize,
+            color: "#2980b9",
+            fontFamily: "Pacifico"
+          }}
+        >
           Ryley Randall
         </div>
         <div
           style={{
-            fontSize: 64,
+            fontSize: styles[size].bodySize,
             color: "#333",
             fontWeight: 500,
             fontFamily: "'Montserrat Alternates', sans-serif"
