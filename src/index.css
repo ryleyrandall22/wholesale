@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates|Pacifico&display=swap");
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 body {
   margin: 0;
   padding: 0;
@@ -7,6 +8,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+}
+
+#root{
+  height:100%;
 }
 
 code {

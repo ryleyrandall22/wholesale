@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Blob from "../Assets/Blob.png";
 import Blocks from "../Assets/Blocks.png";
 import Frame from "../Assets/frame.png";
+import Couple from "../Assets/couple.JPG";
 export default function Intro() {
   const [size, setSize] = useState("reg");
 
@@ -17,13 +18,16 @@ export default function Intro() {
   };
 
   const updateSize = x => {
-    if (window.innerWidth < 420) {
+    if (window.innerWidth < 680) {
       setSize("mobile");
     } else {
       setSize("reg");
     }
+  
+    console.log(size)
   };
   useEffect(() => {
+    updateSize()
     window.addEventListener("resize", updateSize);
 
     return () => window.removeEventListener("resize", updateSize);
@@ -31,69 +35,15 @@ export default function Intro() {
 
   return (
     <div
-      style={{
-        height: "100%",
-        width: "100%",
-        backgroundColor: "#FFF",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative"
-      }}
+      style={{display:'flex', flexWrap:size==='reg'?'nowrap':'wrap', flexDirection:'row', alignItems:'stretch'}}
     >
-      <img
-        alt={"Blob"}
-        style={{
-          zIndex: 20,
-          transform: "rotate(60deg)",
-          width: 300,
-          position: "absolute",
-          top: -150,
-          left: -80
-        }}
-        src={Blob}
-      />
-      {/* <img
-        alt={"Blob"}
-        style={{
-          zIndex: 20,
-          width: 600,
-          position: "absolute",
-          bottom: 0,
-          right: 0
-        }}
-        src={Blocks}
-      /> */}
-      <div
-        style={{
-          width: "100%",
-          maxWidth: 900,
-          height: "100%",
-          paddingTop: 100,
-          paddingLeft: 80,
-          paddingBottom: 200
-        }}
-      >
-        <div
-          style={{
-            fontSize: styles[size].titleSize,
-            color: "#2980b9",
-            fontFamily: "Pacifico"
-          }}
-        >
-          Ryley Randall
+        <div style={{display:'flex', flexGrow:1, flexBasis:'50%', flexDirection:'column', padding:50, justifyContent:'center'}}>
+          <div style={{fontSize:84, marginBottom:80}}>Ryley Randall</div>
+          <div style={{fontSize:32}}>Finance Student, Coder, Arizona Sports Fan, Conesour of German Pancakes</div>
         </div>
-        <div
-          style={{
-            fontSize: styles[size].bodySize,
-            color: "#333",
-            fontWeight: 500,
-            fontFamily: "'Montserrat Alternates', sans-serif"
-          }}
-        >
-          Finance Student at Brigham Young University
+        <div style={{  flexBasis:'50%', flexGrow:1, paddingTop:'25%', minWidth:'360px', minHeight:400, backgroundImage:`url(${Couple})`, backgroundSize: "cover",}}>
+
         </div>
-      </div>
     </div>
   );
 }
